@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Member Dashboard | FinCoach Transformation</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E3A8A',secondary:'#F1F5F9'},fontFamily:{sans:['Inter','sans-serif'],heading:['Poppins','sans-serif']}}}}</script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-secondary dark:bg-slate-950 transition-colors duration-300 min-h-screen overflow-x-hidden">
+
+    <!-- DASHBOARD CONTAINER -->
+    <div class="flex h-screen w-full relative">
+        
+        <!-- Sidebar -->
+        <aside id="dashboard-sidebar" class="hidden lg:flex w-72 bg-white dark:bg-slate-900 flex-col h-full border-r border-slate-100 dark:border-slate-800 transition-all z-50">
+            <div class="p-8 pb-12">
+                <div class="flex items-center justify-between mb-10">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-md"><i class="fas fa-chart-line text-white"></i></div>
+                        <span class="text-xl font-heading font-extrabold text-primary dark:text-blue-400 uppercase tracking-widest">FinCoach</span>
+                    </a>
+                    <!-- Mobile Close Button -->
+                    <button id="close-sidebar" class="lg:hidden p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <nav class="space-y-4">
+                    <a href="#overview" data-section="overview" class="nav-link flex items-center space-x-3 text-primary font-bold bg-blue-50 dark:bg-blue-900/30 p-4 rounded-2xl transition-all">
+                        <i class="fas fa-home"></i> <span>Overview</span>
+                    </a>
+                    <a href="#accounts" data-section="accounts" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
+                        <i class="fas fa-wallet"></i> <span>Accounts</span>
+                    </a>
+                    <a href="#progress" data-section="progress" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
+                        <i class="fas fa-bullseye"></i> <span>Progress</span>
+                    </a>
+                    <a href="#learning" data-section="learning" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
+                        <i class="fas fa-graduation-cap"></i> <span>Academy</span>
+                    </a>
+                    <a href="#billing" data-section="billing" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
+                        <i class="fas fa-receipt"></i> <span>Billing</span>
+                    </a>
+                    <a href="#settings" data-section="settings" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
+                        <i class="fas fa-cog"></i> <span>Settings</span>
+                    </a>
+                    <a href="#profile" data-section="profile" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
+                        <i class="fas fa-user-circle"></i> <span>Profile</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="mt-auto p-8 border-t border-slate-50 dark:border-slate-800">
+                <a href="login.html" class="flex items-center space-x-3 text-error font-bold p-4 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-2xl transition-all">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col h-full overflow-hidden">
+            
+            <!-- Topbar -->
+            <header class="h-20 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 px-8 flex items-center justify-between transition-all flex-shrink-0">
+                <div class="flex items-center space-x-4 lg:hidden">
+                     <button id="sidebar-toggle" class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                        <i class="fas fa-bars"></i>
+                     </button>
+                </div>
+                
+                <h2 class="text-[10px] md:text-sm font-heading font-extrabold text-primary dark:text-blue-400 uppercase tracking-[0.2em]">
+                    Client Dashboard
+                </h2>
+                
+                <div class="flex items-center space-x-6">
+                    <button id="dark-mode-toggle" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 focus:outline-none">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="relative group cursor-pointer">
+                        <i class="far fa-bell text-slate-400 text-xl group-hover:text-primary transition-colors"></i>
+                        <span class="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 border-2 border-white dark:border-slate-900 rounded-full flex items-center justify-center text-[8px] text-white font-bold">3</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Scrollable Content -->
+            <div id="dashboard-content-area" class="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 pb-24 relative">
+                
+                <!-- PROFILE SECTION (NEW) -->
+                <div id="profile" class="dashboard-section hidden space-y-8 animate-in fade-in transition-all duration-300">
+                    <!-- Profile Header Card -->
+                    <div class="bg-white dark:bg-slate-900 rounded-[40px] shadow-sm border border-slate-100 dark:border-slate-800 p-10 overflow-hidden relative group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-12 translate-x-12 blur-3xl"></div>
+                        
+                        <div class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-10 relative z-10">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop" class="w-32 h-32 rounded-3xl object-cover shadow-2xl border-4 border-white dark:border-slate-800" alt="Profile">
+                                <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-emerald-500 rounded-full border-4 border-white dark:border-slate-900"></div>
+                            </div>
+                            
+                            <div class="flex-1 text-center md:text-left">
+                                <h2 class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-2">Marcus Sterling</h2>
+                                <p class="text-slate-500 dark:text-slate-400 mb-6 uppercase tracking-widest text-xs font-bold leading-relaxed">Premium Wealth Protocol Member | Protocol Level 2</p>
+                                
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-slate-50 dark:border-slate-800">
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">Member ID</p>
+                                        <p class="text-sm font-bold text-slate-700 dark:text-slate-200">#FC-8829-X</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">Status</p>
+                                        <p class="text-sm font-bold text-emerald-500 flex items-center gap-1.5 justify-center md:justify-start">
+                                            <span class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
+                                            Active recovery
+                                        </p>
+                                    </div>
+                                    <div class="col-span-2 md:col-span-1">
+                                        <p class="text-[10px] text-slate-400 uppercase tracking-widest font-black mb-1">Email</p>
+                                        <p class="text-sm font-bold text-slate-700 dark:text-slate-200 truncate">marcus.s@fincoach.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Security Module -->
+                        <div class="bg-white dark:bg-slate-900 rounded-[30px] border border-slate-50 dark:border-slate-800 p-8 space-y-6">
+                            <h4 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white mb-2">Security Intelligence</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/30 rounded-2xl border border-slate-100 dark:border-slate-800">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-shield-check text-emerald-500"></i>
+                                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">2FA Protection</span>
+                                    </div>
+                                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] font-black uppercase rounded-full">ENABLED</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/30 rounded-2xl border border-slate-100 dark:border-slate-800">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-key text-blue-500"></i>
+                                        <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Last Password Change</span>
+                                    </div>
+                                    <span class="text-xs text-slate-400 font-bold">14 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Activity Protocol Module -->
+                        <div class="bg-white dark:bg-slate-900 rounded-[30px] border border-slate-100 dark:border-slate-800 p-8 space-y-6">
+                            <h4 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white mb-2">Activity Protocols</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                        <p class="text-sm font-bold text-slate-700 dark:text-slate-300">Login from Mumbai, IN</p>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Active Now</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+                                        <p class="text-sm font-bold text-slate-700 dark:text-slate-300">Login from London, UK</p>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">2h ago</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-2 h-2 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
+                                        <p class="text-sm font-bold text-slate-700 dark:text-slate-300">Academy Module 4 Completed</p>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- OVERVIEW SECTION -->
+                <div id="overview" class="dashboard-section space-y-8 animate-in fade-in transition-all duration-300 transition-all">
+                    <!-- EXISTING CONTENT -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-50 dark:border-slate-800 flex flex-col justify-between h-[200px]">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Total Debt Balance</p>
+                            <div class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-2">$42,500.00</div>
+                            <div class="text-xs text-error font-bold flex items-center space-x-1"><i class="fas fa-arrow-down"></i><span>Decreased by $1.2k this month</span></div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-50 dark:border-slate-800 flex flex-col justify-between h-[200px]">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Interest Saved</p>
+                            <div class="text-3xl font-heading font-extrabold text-blue-500 mb-2">$14,821.00</div>
+                            <div class="text-xs text-slate-400 font-bold">Projected for 2024 payoff</div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col justify-between h-[200px] border-l-4 !border-l-primary">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Next Target Payoff</p>
+                            <div class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-2">Visa Platinum</div>
+                            <div class="text-xs text-primary font-bold">Estimated finish: August 2024</div>
+                        </div>
+                        <div class="bg-primary p-8 rounded-[30px] shadow-xl text-white flex flex-col justify-between h-[200px]">
+                            <p class="text-xs font-bold text-blue-200 uppercase tracking-widest mb-4">Debt-Free Date</p>
+                            <div class="text-3xl font-heading font-extrabold mb-2">Dec 12, 2025</div>
+                            <div class="text-xs text-blue-200 font-bold flex items-center space-x-1"><i class="fas fa-calendar-star"></i><span>Accelerated by 14 months!</span></div>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Brief Trajectory View -->
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-50 dark:border-slate-800">
+                             <div class="flex justify-between items-center mb-8">
+                                <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm">Real-time Trajectory</h3>
+                                <a href="#progress" class="text-xs text-primary font-bold hover:underline">Full Details</a>
+                            </div>
+                            <div class="h-48 flex items-end justify-between space-x-1 px-2 relative">
+                                <div class="absolute inset-0 flex flex-col justify-between py-2"><span class="h-px bg-slate-50 dark:bg-slate-800"></span><span class="h-px bg-slate-50 dark:bg-slate-800"></span><span class="h-px bg-slate-50 dark:bg-slate-800"></span></div>
+                                <div class="w-full bg-primary/20 rounded-t h-[90%] md:h-[95%]"></div><div class="w-full bg-primary/20 rounded-t h-[80%] md:h-[85%]"></div><div class="w-full bg-primary/20 rounded-t h-[70%] md:h-[75%]"></div>
+                                <div class="w-full bg-primary/20 rounded-t h-[60%] md:h-[65%]"></div><div class="w-full bg-primary/20 rounded-t h-[50%] md:h-[55%]"></div><div class="w-full bg-primary rounded-t h-[40%] md:h-[45%]"></div>
+                            </div>
+                        </div>
+                        <!-- Brief Tasks View -->
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-50 dark:border-slate-800">
+                            <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white mb-6 uppercase tracking-wider text-sm">Critical Protocols</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl">
+                                    <div class="flex items-center space-x-3"><i class="fas fa-check-circle text-blue-500"></i><span class="text-sm font-bold dark:text-white">Freeze Credit Lines</span></div>
+                                    <span class="text-[10px] bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-bold">ACTIVE</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-slate-100 dark:border-slate-800 rounded-2xl">
+                                    <div class="flex items-center space-x-3"><i class="far fa-circle text-slate-300"></i><span class="text-sm font-bold dark:text-white">Enable Round-up Savings</span></div>
+                                    <span class="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-400 px-2 py-1 rounded-full font-bold">READY</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROGRESS SECTION -->
+                <div id="progress" class="dashboard-section hidden space-y-8 animate-in slide-in-from-right-4 transition-all duration-300">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-50 dark:border-slate-800">
+                            <h3 class="text-xl font-heading font-extrabold text-slate-900 dark:text-white mb-8 uppercase tracking-widest text-sm">Payoff Trajectory (Detailed)</h3>
+                            <div class="h-64 flex items-end justify-between space-x-2 px-4 relative">
+                                <div class="absolute inset-0 flex flex-col justify-between pr-4">
+                                    <span class="h-px w-full bg-slate-100 dark:bg-slate-800"></span><span class="h-px w-full bg-slate-100 dark:bg-slate-800"></span><span class="h-px w-full bg-slate-100 dark:bg-slate-800"></span>
+                                </div>
+                                <div class="w-full bg-primary/20 hover:bg-primary transition-all rounded-t-lg h-[90%] relative group"></div>
+                                <div class="w-full bg-primary/20 hover:bg-primary transition-all rounded-t-lg h-[75%] relative group"></div>
+                                <div class="w-full bg-primary/20 hover:bg-primary transition-all rounded-t-lg h-[68%] relative group"></div>
+                                <div class="w-full bg-primary/20 hover:bg-primary transition-all rounded-t-lg h-[60%] relative group"></div>
+                                <div class="w-full bg-primary/20 hover:bg-primary transition-all rounded-t-lg h-[50%] relative group"></div>
+                                <div class="w-full bg-primary/40 rounded-t-lg h-[45%] relative"></div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-t-lg h-[35%]"></div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-t-lg h-[25%]"></div>
+                            </div>
+                            <div class="mt-8 flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                <span>January</span><span>June</span><span>December</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-50 dark:border-slate-800">
+                            <h3 class="text-xl font-heading font-extrabold text-slate-900 dark:text-white mb-8 uppercase tracking-widest text-sm">Active Transformation Modules</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/40 text-primary rounded-xl flex items-center justify-center font-bold">1</div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between mb-1"><p class="text-sm font-bold dark:text-white">Emergency Buffer Protocol</p><p class="text-xs text-slate-400">85%</p></div>
+                                        <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full"><div class="h-full bg-primary rounded-full" style="width: 85%"></div></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 opacity-50">
+                                    <div class="w-12 h-12 bg-slate-100 dark:bg-slate-800 text-slate-400 rounded-xl flex items-center justify-center font-bold">2</div>
+                                    <div class="flex-1">
+                                        <div class="flex justify-between mb-1"><p class="text-sm font-bold dark:text-white">The Psychology of Spending</p><p class="text-xs text-slate-400">Locked</p></div>
+                                        <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACCOUNTS SECTION -->
+                <div id="accounts" class="dashboard-section hidden space-y-8 animate-in slide-in-from-right-4 transition-all duration-300">
+                    <div class="bg-white dark:bg-slate-900 p-6 md:p-10 rounded-[40px] shadow-sm border border-slate-50 dark:border-slate-800">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+                            <h3 class="text-xl md:text-2xl font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm">Linked Accounts <span class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded ml-2 font-bold text-slate-400">READ ONLY</span></h3>
+                            <button class="cta-button border-2 border-primary text-primary h-10 px-6 text-xs font-bold rounded-xl whitespace-nowrap">Link New Bank</button>
+                        </div>
+                        
+                        <div class="overflow-x-auto pb-4">
+                            <table class="w-full text-left min-w-[500px]">
+                                <thead>
+                                    <tr class="text-[10px] font-bold text-slate-400 uppercase tracking-widest border-b border-slate-50 dark:border-slate-800">
+                                        <th class="pb-6">Account Name</th>
+                                        <th class="pb-6">Type</th>
+                                        <th class="pb-6 text-right">Balance</th>
+                                        <th class="pb-6">Last Sync</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm text-slate-600 dark:text-slate-300">
+                                    <tr class="border-b border-slate-50 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                        <td class="py-6 font-bold text-slate-900 dark:text-white">Chase Sapphire Preferred</td>
+                                        <td class="py-6">Credit Card</td>
+                                        <td class="py-6 text-right font-black text-red-500">$12,450.00</td>
+                                        <td class="py-6">2 hours ago</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-50 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                        <td class="py-6 font-bold text-slate-900 dark:text-white">Ally Savings (Emergency)</td>
+                                        <td class="py-6">Savings</td>
+                                        <td class="py-6 text-right font-black text-blue-500">$5,000.00</td>
+                                        <td class="py-6">Just Now</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACADEMY SECTION -->
+                <div id="learning" class="dashboard-section hidden space-y-8 animate-in slide-in-from-right-4 transition-all duration-300">
+                    <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm mb-6">Financial Mastery Academy</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-[30px] border border-slate-100 dark:border-slate-800 shadow-sm group">
+                            <div class="h-40 bg-slate-200 dark:bg-slate-800 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                                <i class="fas fa-snowflake text-4xl text-primary/30 group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Debt Snowball 101</h4>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">Master the psychological momentum of paying off small balances first.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-bold text-primary dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full uppercase tracking-tighter">Completed</span>
+                                <i class="fas fa-play-circle text-primary text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-[30px] border border-slate-100 dark:border-slate-800 shadow-sm border-l-4 border-l-primary group">
+                            <div class="h-40 bg-primary/10 dark:bg-primary/20 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
+                                <i class="fas fa-shield-halved text-4xl text-primary group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">The Security Buffer</h4>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">How to scale from $1,000 to 6 months of total living expenses.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-bold text-slate-400 bg-slate-50 dark:bg-slate-800 px-3 py-1 rounded-full uppercase tracking-tighter">In Progress (85%)</span>
+                                <i class="fas fa-play-circle text-primary text-xl animate-pulse"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-[30px] border border-slate-100 dark:border-slate-800 shadow-sm opacity-60 grayscale group">
+                             <div class="h-40 bg-slate-100 dark:bg-slate-800 rounded-2xl mb-6 flex items-center justify-center">
+                                <i class="fas fa-lock text-3xl text-slate-300"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 dark:text-white mb-2">Credit Score Logic</h4>
+                            <p class="text-xs text-slate-400 mb-6 leading-relaxed">Understanding the algorithms that define your financial reputation.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-bold text-slate-300 bg-slate-50 dark:bg-slate-800 px-3 py-1 rounded-full uppercase tracking-tighter">Locked</span>
+                                <i class="fas fa-lock text-slate-300 text-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BILLING SECTION -->
+                <div id="billing" class="dashboard-section hidden space-y-8 animate-in slide-in-from-right-4 transition-all duration-300">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[40px] border border-slate-100 dark:border-slate-800 shadow-sm">
+                            <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm mb-8">Membership Protocol</h3>
+                            <div class="p-6 bg-primary rounded-3xl text-white relative overflow-hidden mb-8">
+                                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-blue-200 mb-2">Active Plan</p>
+                                <h4 class="text-2xl font-heading font-black mb-4">Elite Transformation</h4>
+                                <div class="flex justify-between items-center text-xs border-t border-white/20 pt-4">
+                                    <span>Renews: Aug 12, 2024</span>
+                                    <span class="font-bold">$49.00/mo</span>
+                                </div>
+                            </div>
+                            <button class="w-full h-12 bg-slate-900 dark:bg-slate-800 text-white text-xs font-bold rounded-2xl hover:scale-[1.02] transition-transform">Manage Subscription</button>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[40px] border border-slate-100 dark:border-slate-800 shadow-sm">
+                            <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm mb-8">Recent Invoices</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-4 border border-slate-50 dark:border-slate-800 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                    <div><p class="text-sm font-bold dark:text-white">July 2024 billing cycle</p><p class="text-[10px] text-slate-400 font-medium">Inv #FIN-2024-07</p></div>
+                                    <span class="text-sm font-black dark:text-blue-400">$49.00</span>
+                                </div>
+                                <div class="flex justify-between items-center p-4 border border-slate-50 dark:border-slate-800 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                                    <div><p class="text-sm font-bold dark:text-white">June 2024 billing cycle</p><p class="text-[10px] text-slate-400 font-medium">Inv #FIN-2024-06</p></div>
+                                    <span class="text-sm font-black dark:text-blue-400">$49.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS SECTION -->
+                <div id="settings" class="dashboard-section hidden space-y-8 animate-in slide-in-from-right-4 transition-all duration-300">
+                    <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[40px] border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col h-full">
+                            <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm mb-8 font-bold">Profile Identity</h3>
+                            <div class="grid md:grid-cols-2 gap-6 flex-grow">
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">Full System Name</label>
+                                    <input type="text" value="Marcus Sterling" class="w-full h-12 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-4 text-sm font-bold dark:text-white focus:ring-2 focus:ring-primary/20">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest pl-1">Communication Endpoint</label>
+                                    <input type="email" value="marcus.sterling@nexus.com" class="w-full h-12 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-4 text-sm font-bold dark:text-white focus:ring-2 focus:ring-primary/20">
+                                </div>
+                            </div>
+                            <button class="mt-8 px-8 h-12 bg-primary text-white text-xs font-bold rounded-2xl hover:shadow-lg transition-all w-fit mx-auto">Update Identity</button>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[40px] border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col h-full">
+                            <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm mb-8 font-bold">Alert Protocols</h3>
+                            <div class="space-y-6 flex-grow">
+                                <div class="flex items-center justify-between">
+                                    <div><p class="text-sm font-bold dark:text-white">Debt Anomalies</p><p class="text-[10px] text-slate-400">Push notifications for sharp interest hikes</p></div>
+                                    <div class="w-10 h-5 bg-primary rounded-full relative cursor-pointer"><div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div></div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div><p class="text-sm font-bold dark:text-white">Sync Status</p><p class="text-[10px] text-slate-400">Email digest for linked account failures</p></div>
+                                    <div class="w-10 h-5 bg-slate-200 dark:bg-slate-800 rounded-full relative cursor-pointer"><div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full shadow-sm"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- End Sections -->
+            </div>
+        </main>
+    </div>
+
+    <style>
+        .dashboard-section { transition: all 0.3s ease; }
+        .animate-in { animation: animateIn 0.4s ease-out forwards; }
+        @keyframes animateIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('dashboard-sidebar');
+            const toggleBtn = document.getElementById('sidebar-toggle');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.dashboard-section');
+            const systemStatusTitle = document.querySelector('h2.lg\\:block');
+
+            // SECTION SWITCHER LOGIC
+            const switchSection = (sectionId) => {
+                // Update Sidebar
+                navLinks.forEach(link => {
+                    const isActive = link.getAttribute('data-section') === sectionId;
+                    if (isActive) {
+                        link.classList.add('text-primary', 'font-bold', 'bg-blue-50', 'dark:bg-blue-900/30');
+                        link.classList.remove('text-slate-400');
+                    } else {
+                        link.classList.remove('text-primary', 'font-bold', 'bg-blue-50', 'dark:bg-blue-900/30');
+                        link.classList.add('text-slate-400');
+                    }
+                });
+
+                // Show Content
+                sections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.classList.remove('hidden');
+                        section.classList.add('animate-in');
+                    } else {
+                        section.classList.add('hidden');
+                        section.classList.remove('animate-in');
+                    }
+                });
+
+                // Update Title (Removed per request)
+                // if (systemStatusTitle) { ... }
+
+                // Close sidebar on mobile
+                if (!sidebar.classList.contains('hidden') && window.innerWidth < 1024) {
+                    toggleSidebar();
+                }
+            };
+
+            const toggleSidebar = () => {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('fixed');
+                sidebar.classList.toggle('inset-0');
+                sidebar.classList.toggle('w-full');
+            };
+
+            // Event Listeners
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('data-section');
+                    if (sectionId) {
+                        switchSection(sectionId);
+                        // Update hash without jumping
+                        history.pushState(null, null, `#${sectionId}`);
+                    }
+                });
+            });
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', toggleSidebar);
+            }
+
+            const closeBtn = document.getElementById('close-sidebar');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', toggleSidebar);
+            }
+
+            // Handle initial load from hash
+            const initialHash = window.location.hash.replace('#', '') || 'overview';
+            switchSection(initialHash);
+        });
+    </script>
+</body>
+</html>

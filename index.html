@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Personal Finance Coach | Path to Debt Freedom</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <meta name="description" content="Master your finances and become debt-free with our personalized coaching and financial transformation system.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#F1F5F9',
+                        accent: '#10B981',
+                        warning: '#F59E0B',
+                        error: '#EF4444'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style id="premium-hero-animation-styles">
+        #upward-trend {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 3.5s ease-out;
+        }
+
+        @keyframes beamMove {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .animate-beam {
+            animation: beamMove 3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        .debt-card {
+            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .wealth-bar {
+            opacity: 0;
+            height: 0 !important;
+            transition: height 1.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+        }
+
+        .wealth-bar.active {
+            opacity: 1;
+            /* Height is managed by original classes after being triggered */
+        }
+        
+        #wealth-landscape.active .wealth-bar:nth-child(1) { height: 30% !important; }
+        #wealth-landscape.active .wealth-bar:nth-child(2) { height: 55% !important; }
+        #wealth-landscape.active .wealth-bar:nth-child(3) { height: 80% !important; }
+        #wealth-landscape.active .wealth-bar:nth-child(4) { height: 100% !important; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 transition-colors duration-300 has-fixed-header">
+
+    <!-- Header -->
+    <header class="bg-white dark:bg-slate-900 shadow-sm site-header transition-colors duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-heading font-bold text-primary dark:text-blue-400">FinCoach</span>
+                </a>
+            </div>
+
+            <!-- Main Nav -->
+            <div class="hidden xl:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="index.html" class="text-primary border-b-2 border-primary pb-1">Home 1</a>
+                <a href="home-2.html" class="hover:text-primary transition-colors">Home 2</a>
+                <a href="about.html" class="hover:text-primary transition-colors">About</a>
+                <a href="services.html" class="hover:text-primary transition-colors">Services</a>
+                <a href="programs.html" class="hover:text-primary transition-colors">Programs</a>
+                <a href="pricing.html" class="hover:text-primary transition-colors">Pricing</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <a href="dashboard.html" aria-label="Dashboard" title="Dashboard" class="!hidden xl:!inline-flex cta-button border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-slate-900 !h-10 !w-10 !px-0">
+                    <i class="fas fa-columns text-sm"></i>
+                </a>
+                <a href="login.html" class="!hidden xl:!inline-flex cta-button border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-slate-900 !h-10 text-sm">Login</a>
+                
+                <button id="dark-mode-toggle" class="!hidden xl:!inline-flex p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400 focus:outline-none">
+                    <i class="fas fa-moon w-6 h-6 flex items-center justify-center"></i>
+                </button>
+                
+                <button id="rtl-toggle" class="!hidden xl:!inline-flex p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400 focus:outline-none">
+                    <i class="fas fa-language w-6 h-6 flex items-center justify-center"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button type="button" id="mobile-menu-btn" class="xl:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-md">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Backdrop -->
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[45] hidden opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="xl:hidden fixed top-0 right-0 h-full w-80 bg-white dark:bg-slate-900 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div class="px-6 py-6 h-full flex flex-col">
+                <!-- Drawer Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <span class="text-xl font-heading font-bold text-slate-900 dark:text-white">Menu</span>
+                    <button id="mobile-menu-close" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 focus:outline-none">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="space-y-4 flex-grow">
+                    <a href="index.html" class="block py-2 text-primary font-bold text-lg">Home 1</a>
+                    <a href="home-2.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Home 2</a>
+                    <a href="about.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">About</a>
+                    <a href="services.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Services</a>
+                    <a href="programs.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Programs</a>
+                    <a href="pricing.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Pricing</a>
+                    <a href="contact.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Contact</a>
+                    
+                    <!-- Mobile Actions (Continuous) -->
+                    <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
+                        <div class="flex items-center space-x-6 mb-8">
+                            <a href="dashboard.html" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-columns text-xl"></i>
+                            </a>
+                            <button id="dark-mode-toggle" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-moon text-xl"></i>
+                            </button>
+                            <button id="rtl-toggle" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-language text-xl"></i>
+                            </button>
+                        </div>
+                        <a href="login.html" class="cta-button border-2 border-primary text-primary text-center py-3 rounded-lg font-bold block">Login</a>
+                    </div>
+                </div>
+                
+                <!-- Bottom Spacer for drawer height -->
+                <div class="mt-auto pb-4"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO (min-h-screen, NO GAP) -->
+    <section class="min-h-screen flex items-center bg-slate-50 dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden hero-section">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-blue-200/60 dark:bg-blue-900/10 -skew-x-12 transform translate-x-20 hidden lg:block"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid lg:grid-cols-2 gap-12 items-center py-12 lg:py-0">
+            <div>
+                <span class="inline-block py-1 px-3 bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-300 text-xs font-bold rounded-full mb-6 uppercase tracking-wider">Join 15K+ Debt-Free Graduates</span>
+                <h1 class="text-4xl md:text-6xl font-heading font-extrabold leading-tight text-slate-900 dark:text-white mb-6">
+                    Break Free From Debt. <br/>
+                    <span class="text-primary dark:text-blue-400">Live Your Best Life.</span>
+                </h1>
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-xl">
+                    Our evidence-based coaching system helps you eliminate debt 2x faster without sacrificing the lifestyle you love. Build a legacy, not a balance.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="programs.html" class="cta-button bg-primary text-white text-lg shadow-lg hover:shadow-primary/30">Start Payoff Plan</a>
+                    <a href="services.html" class="cta-button border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Explore Services</a>
+                </div>
+                
+                <!-- Hero Social Proof -->
+                <div class="mt-12 flex items-center space-x-6">
+                    <div class="flex -space-x-2">
+                        <img class="w-10 h-10 rounded-full border-2 border-white dark:border-slate-800" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&h=100&auto=format&fit=crop" alt="User 1">
+                        <img class="w-10 h-10 rounded-full border-2 border-white dark:border-slate-800" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&h=100&auto=format&fit=crop" alt="User 2">
+                        <img class="w-10 h-10 rounded-full border-2 border-white dark:border-slate-800" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&h=100&auto=format&fit=crop" alt="User 3">
+                    </div>
+                    <div class="text-sm text-slate-500 dark:text-slate-400">
+                        <p><span class="font-bold text-slate-900 dark:text-white">4.9/5 Rating</span> from our community</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative lg:h-[620px] flex items-center justify-center w-full min-h-[450px]">
+                <!-- Background Glows -->
+                <div class="absolute -z-10 w-96 h-96 bg-blue-200 dark:bg-blue-900/20 blur-[100px] rounded-full top-10 left-10"></div>
+                <div class="absolute -z-10 w-80 h-80 bg-blue-100 dark:bg-blue-900/10 blur-[100px] rounded-full bottom-10 right-10"></div>
+
+                <!-- TRANSFORMATION VISUALIZATION -->
+                <div id="transformation-visual" class="relative w-full max-w-lg aspect-square bg-white shadow-2xl dark:bg-slate-900/40 dark:backdrop-blur-xl rounded-[3.5rem] border border-slate-100 dark:border-slate-800 flex flex-col p-8 overflow-hidden transform-gpu hover:scale-[1.02] transition-transform duration-500">
+                    
+                    <!-- Counters Header -->
+                    <div class="flex justify-between items-start mb-8 z-10">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] uppercase font-black text-rose-500/70 tracking-[0.2em] mb-1">Total Liability</span>
+                            <div class="flex items-center space-x-1 text-2xl md:text-3xl font-black text-rose-500 tabular-nums">
+                                <span class="text-lg opacity-50">₹</span><span id="debt-count">1,20,000</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col text-right">
+                            <span class="text-[10px] uppercase font-black text-emerald-500/70 tracking-[0.2em] mb-1">Projected Wealth</span>
+                            <div class="flex items-center justify-end space-x-1 text-2xl md:text-3xl font-black text-emerald-500 tabular-nums">
+                                <span class="text-lg opacity-50">₹</span><span id="wealth-count">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scene Stage -->
+                    <div class="flex-1 relative flex items-center justify-center">
+                        
+                        <!-- Trend Graph (Static opacity, dynamic stroke) -->
+                        <svg class="absolute inset-x-0 bottom-16 w-full h-40 opacity-10 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path id="upward-trend" d="M0,100 C20,95 40,80 60,50 80,30 100,0" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round"></path>
+                        </svg>
+
+                        <!-- DEBT LAYER (Initial) -->
+                        <div id="debt-landscape" class="absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-in-out">
+                            <div class="relative w-full h-full flex items-center justify-center">
+                                <!-- Ghost Cards -->
+                                <div class="debt-card absolute w-44 h-24 bg-rose-500/10 border border-rose-500/20 rounded-2xl -rotate-12 -translate-x-12 translate-y-4 backdrop-blur-md shadow-lg flex flex-col justify-end p-4">
+                                    <div class="w-1/2 h-1.5 bg-rose-500/20 rounded-full"></div>
+                                </div>
+                                <div class="debt-card absolute w-52 h-28 bg-white dark:bg-slate-800 border border-rose-500/30 rounded-2xl rotate-3 z-10 shadow-2xl flex flex-col p-6 animate-pulse">
+                                    <div class="flex justify-between items-center mb-6">
+                                        <div class="w-10 h-6 bg-rose-100 dark:bg-rose-900/30 rounded"></div>
+                                        <i class="fas fa-exclamation-circle text-rose-500"></i>
+                                    </div>
+                                    <div class="text-rose-600 font-black text-xs">₹45,000 OVERDUE</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WEALTH LAYER (Hidden) -->
+                        <div id="wealth-landscape" class="absolute inset-0 flex items-end justify-center transition-all duration-1000 ease-in-out translate-y-full opacity-0">
+                            <div class="grid grid-cols-4 gap-4 items-end w-full px-6 h-3/4">
+                                <div class="wealth-bar h-[30%] bg-gradient-to-t from-emerald-500 to-cyan-400 rounded-t-xl transition-all duration-1000 delay-100 relative group flex justify-center">
+                                    <i class="fas fa-check-circle text-emerald-500 absolute -top-8 scale-0 transition-transform delay-1000 group-[.active]:scale-100"></i>
+                                </div>
+                                <div class="wealth-bar h-[55%] bg-gradient-to-t from-emerald-500 to-cyan-400 rounded-t-xl transition-all duration-1000 delay-300 relative group flex justify-center">
+                                    <i class="fas fa-check-circle text-emerald-500 absolute -top-8 scale-0 transition-transform delay-1200 group-[.active]:scale-100"></i>
+                                </div>
+                                <div class="wealth-bar h-[80%] bg-gradient-to-t from-emerald-500 to-cyan-400 rounded-t-xl transition-all duration-1000 delay-500 relative group flex justify-center">
+                                    <i class="fas fa-check-circle text-emerald-500 absolute -top-8 scale-0 transition-transform delay-1400 group-[.active]:scale-100"></i>
+                                </div>
+                                <div class="wealth-bar h-[100%] bg-gradient-to-t from-emerald-500 to-cyan-400 rounded-t-xl transition-all duration-1000 delay-700 relative group flex justify-center">
+                                    <i class="fas fa-rocket text-cyan-500 absolute -top-10 scale-0 transition-transform delay-1600 group-[.active]:scale-125"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transformation Scan Beam -->
+                        <div id="trans-beam" class="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent shadow-[0_0_15px_#22d3ee] z-20 opacity-0 pointer-events-none"></div>
+                    </div>
+
+                    <!-- Phases Footer -->
+                    <div class="mt-auto px-2 flex justify-between items-center text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                        <span id="phase-debt" class="text-rose-500 border-b-2 border-rose-500/30 pb-2">Liability</span>
+                        <span id="phase-middle" class="opacity-30">Freedom</span>
+                        <span id="phase-wealth" class="opacity-30">Generation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1.5: LIVE IMPACT METRICS (NEW) -->
+    <section class="py-20 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl animate-pulse"></div>
+                    <h2 class="text-3xl md:text-5xl font-heading font-extrabold text-slate-900 dark:text-white mb-6">Real-Time Empowerment</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 mb-8">Our platform doesn't just track numbers; it fuels your motivation with live progress visualizations. See your future self taking shape with every dollar saved.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700 hover:scale-[1.02] transition-transform">
+                            <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Instant Sync</h4>
+                                <p class="text-sm text-slate-500">Every payment updates your freedom status immediately.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4 p-4 bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl border border-blue-100/50 dark:border-blue-800/20 hover:scale-[1.02] transition-transform">
+                            <div class="w-12 h-12 bg-blue-100 text-primary rounded-xl flex items-center justify-center text-xl">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Bank-Grade Security</h4>
+                                <p class="text-sm text-slate-500">256-bit encryption for your peace of mind.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 relative">
+                    <div class="absolute inset-0 bg-blue-100/20 dark:bg-blue-900/10 blur-3xl rounded-full"></div>
+                    <!-- Metric Card 1 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 flex flex-col items-center justify-center text-center metric-card-reveal h-full">
+                        <div class="text-4xl font-heading font-black text-primary dark:text-blue-400 mb-2 tabular-nums counter-up" data-target="15000">0</div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Active Members</p>
+                    </div>
+                    <!-- Metric Card 2 -->
+                    <div class="bg-primary dark:bg-blue-600 p-8 rounded-3xl shadow-xl text-white flex flex-col items-center justify-center text-center metric-card-reveal h-full">
+                        <div class="text-4xl font-heading font-black mb-2 tabular-nums counter-up" data-target="85">0</div>
+                        <p class="text-sm font-bold text-blue-100 uppercase tracking-widest">% Efficiency</p>
+                    </div>
+                    <!-- Metric Card 3 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 flex flex-col items-center justify-center text-center metric-card-reveal h-full">
+                        <div class="text-4xl font-heading font-black text-primary dark:text-blue-400 mb-2 tabular-nums counter-up" data-target="12">0</div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Avg. Months</p>
+                    </div>
+                    <!-- Metric Card 4 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-700 flex flex-col items-center justify-center text-center metric-card-reveal h-full">
+                        <div class="text-4xl font-heading font-black text-primary mb-2 tabular-nums counter-up" data-target="500">0</div>
+                        <p class="text-sm font-bold text-slate-500 uppercase tracking-widest">Growth %</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION 3: SERVICES -->
+    <section id="services" class="py-24 bg-secondary dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">Comprehensive Solutions</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">We don't just give advice; we provide a system designed for your personal recovery and growth.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 card-float">
+                    <div class="card-image-container group relative">
+                        <img src="assets/images/debt-snowball.png" alt="Debt Snowball Strategy" loading="lazy">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors"></div>
+                        <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 dark:bg-slate-800/90 rounded-lg flex items-center justify-center text-primary shadow-sm backdrop-blur-sm">
+                            <i class="fas fa-hand-holding-dollar"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3 text-slate-900 dark:text-white">Debt Snowball Strategy</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Psychological-driven debt reduction focus to keep you motivated with quick wins.</p>
+                    <a href="service-details.html" class="text-primary dark:text-blue-400 font-semibold flex items-center space-x-2 hover:translate-x-1 transition-transform">
+                        <span>Learn more</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 card-float">
+                    <div class="card-image-container group relative">
+                        <img src="assets/images/cash-flow.png" alt="Cash Flow Coaching" loading="lazy">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors"></div>
+                        <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 dark:bg-slate-800/90 rounded-lg flex items-center justify-center text-blue-600 shadow-sm backdrop-blur-sm">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3 text-slate-900 dark:text-white">Cash Flow Coaching</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Master your budget with zero-based planning that actually fits your real-world lifestyle.</p>
+                    <a href="service-details.html" class="text-primary dark:text-blue-400 font-semibold flex items-center space-x-2 hover:translate-x-1 transition-transform">
+                        <span>Learn more</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 card-float">
+                    <div class="card-image-container group relative">
+                        <img src="assets/images/behavioral-finance.png" alt="Behavioral Finance" loading="lazy">
+                        <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors"></div>
+                        <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 dark:bg-slate-800/90 rounded-lg flex items-center justify-center text-blue-600 shadow-sm backdrop-blur-sm">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold mb-3 text-slate-900 dark:text-white">Behavioral Finance</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6">Understand the 'Why' behind your spending habits to create permanent wealth-building shifts.</p>
+                    <a href="service-details.html" class="text-primary dark:text-blue-400 font-semibold flex items-center space-x-2 hover:translate-x-1 transition-transform">
+                        <span>Learn more</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: HOW IT WORKS -->
+    <section class="py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=800&auto=format&fit=crop" alt="The Journey" class="rounded-3xl shadow-2xl">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-slate-900 dark:text-white mb-8">Four Steps to Zero Debt</h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0 font-bold">1</div>
+                            <div>
+                                <h4 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-2">The Audit</h4>
+                                <p class="text-slate-600 dark:text-slate-400">Total analysis of your current assets, debts, and spending leaks.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0 font-bold">2</div>
+                            <div>
+                                <h4 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-2">The Strategy</h4>
+                                <p class="text-slate-600 dark:text-slate-400">Customized "Freedom Path" tailored to your timeline and income.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                            <div>
+                                <h4 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-2">The Implementation</h4>
+                                <p class="text-slate-600 dark:text-slate-400">Direct coaching and tools to automate your journey and handle setbacks.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                            <div>
+                                <h4 class="text-xl font-heading font-bold text-slate-900 dark:text-white mb-2">Financial Independence</h4>
+                                <p class="text-slate-600 dark:text-slate-400">Shift focus from paying off the past to building your legacy future.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4.5: THE FREEDOM PATH JOURNEY (NEW) -->
+    <section class="py-24 bg-slate-950 text-white relative overflow-hidden">
+        <!-- Floating Animated Grains -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none" id="bubble-bg"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 animate-on-scroll">
+                <h2 class="text-4xl md:text-6xl font-heading font-extrabold mb-6">The Wealth Spectrum</h2>
+                <p class="text-blue-200/70 max-w-2xl mx-auto">See the divergence between stagnation and transformation. Our strategy isn't just about paying bills—it's about building assets.</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line (Mobile-first positioning) -->
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-500/50 to-transparent overflow-hidden">
+                    <div class="w-full h-full animate-path-flow bg-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.5)]"></div>
+                </div>
+                
+                <div class="space-y-24 md:space-y-32">
+                    <!-- Point 1 -->
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between group animate-on-scroll relative">
+                        <!-- Content Box 1 -->
+                        <div class="pl-14 md:pl-0 md:w-[45%] text-left md:text-right mb-6 md:mb-0 transform transition-all duration-700 md:group-hover:-translate-x-4">
+                            <h3 class="text-xl md:text-2xl font-heading font-bold text-blue-400 mb-2 md:mb-3">Month 0: The Anchor</h3>
+                            <p class="text-slate-400 text-sm md:text-base">Total clarity on your financial state. No more guessing, no more stress. We map every liability to its exit strategy.</p>
+                        </div>
+                        <!-- Marker -->
+                        <div class="absolute left-0 md:relative md:left-auto w-12 h-12 bg-blue-600 rounded-full border-4 border-slate-950 z-20 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                            <div class="absolute w-full h-full rounded-full border-2 border-blue-400 animate-ping opacity-20"></div>
+                            <span class="text-[10px] md:text-xs font-bold">START</span>
+                        </div>
+                        <!-- Side Card 1 -->
+                        <div class="pl-14 md:pl-0 md:w-[45%] mt-4 md:mt-0">
+                             <div class="bg-slate-900/50 p-4 md:p-6 rounded-3xl border border-white/5 backdrop-blur-sm transform transition-all hover:border-blue-500/30">
+                                <i class="fas fa-anchor text-blue-500 text-2xl md:text-3xl mb-4"></i>
+                                <h4 class="font-bold mb-1 md:mb-2 text-white text-sm md:text-base">Clarity Audit</h4>
+                                <p class="text-[10px] md:text-xs text-slate-500">We uncover hidden spending traps and automated leaks.</p>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="flex flex-col md:flex-row-reverse items-start md:items-center justify-between group animate-on-scroll relative">
+                        <!-- Content Box 2 -->
+                        <div class="pl-14 md:pl-0 md:w-[45%] text-left mb-6 md:mb-0 transform transition-all duration-700 md:group-hover:translate-x-4">
+                            <h3 class="text-xl md:text-2xl font-heading font-bold text-blue-400 mb-2 md:mb-3">Month 6: Velocity</h3>
+                            <p class="text-slate-400 text-sm md:text-base">The "Snowball" is gaining mass. Balances reach zero ahead of schedule, fueling your psychological wins.</p>
+                        </div>
+                        <!-- Marker -->
+                        <div class="absolute left-0 md:relative md:left-auto w-12 h-12 bg-blue-500 rounded-full border-4 border-slate-950 z-20 flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                            <div class="absolute w-full h-full rounded-full border-2 border-blue-400 animate-ping opacity-20"></div>
+                             <i class="fas fa-check text-xs"></i>
+                        </div>
+                        <!-- Side Card 2 -->
+                        <div class="pl-14 md:pl-0 md:w-[45%] mt-4 md:mt-0">
+                             <div class="bg-slate-900/50 p-4 md:p-6 rounded-3xl border border-white/5 backdrop-blur-sm transform transition-all hover:border-blue-500/30">
+                                <i class="fas fa-tachometer-alt text-blue-500 text-2xl md:text-3xl mb-4"></i>
+                                <h4 class="font-bold mb-1 md:mb-2 text-white text-sm md:text-base">The Tip Point</h4>
+                                <p class="text-[10px] md:text-xs text-slate-500">Debt reduction becomes exponential as interest rates fall.</p>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between group animate-on-scroll relative">
+                        <!-- Content Box 3 -->
+                        <div class="pl-14 md:pl-0 md:w-[45%] text-left md:text-right mb-6 md:mb-0 transform transition-all duration-700 md:group-hover:-translate-x-4">
+                            <h3 class="text-xl md:text-2xl font-heading font-bold text-blue-300 mb-2 md:mb-3">Month 24+: Legacy</h3>
+                            <p class="text-slate-400 text-sm md:text-base">Zero debt. Now, every dollar that used to go to bankers goes into your wealth-building portfolio.</p>
+                        </div>
+                        <!-- Marker -->
+                        <div class="absolute left-0 md:relative md:left-auto w-12 h-12 bg-slate-700 rounded-full border-4 border-slate-950 z-20 flex items-center justify-center shadow-[0_0_20px_rgba(100,116,139,0.4)]">
+                            <div class="absolute w-full h-full rounded-full border-2 border-slate-400 animate-ping opacity-20"></div>
+                             <i class="fas fa-crown text-xs"></i>
+                        </div>
+                        <!-- Side Card 3 -->
+                        <div class="pl-14 md:pl-0 md:w-[45%] mt-4 md:mt-0">
+                             <div class="bg-slate-900/50 p-4 md:p-6 rounded-3xl border border-white/5 backdrop-blur-sm transform transition-all hover:border-slate-500/30">
+                                <i class="fas fa-gem text-slate-400 text-2xl md:text-3xl mb-4"></i>
+                                <h4 class="font-bold mb-1 md:mb-2 text-white text-sm md:text-base">Wealth Generation</h4>
+                                <p class="text-[10px] md:text-xs text-slate-500">Compound interest starts working FOR you, not against you.</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: TESTIMONIALS -->
+    <section class="py-24 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">Real Results, Real People</h2>
+                <div class="flex justify-center space-x-1 text-primary mb-4">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <p class="text-slate-600 dark:text-slate-400 italic mb-8">"I thought $80k in debt would take 10 years. With FinCoach, I was debt-free in 32 months and just bought my first home cash-heavy."</p>
+                    <div class="flex items-center space-x-4">
+                        <img class="w-12 h-12 rounded-full" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop" alt="Sarah J.">
+                        <div>
+                            <h5 class="font-bold text-slate-900 dark:text-white">Marcus Sterling</h5>
+                            <p class="text-xs text-slate-500 uppercase tracking-widest">Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <p class="text-slate-600 dark:text-slate-400 italic mb-8">"The coaching isn't just about math; it's about mindset. The stress reduction in our marriage has been life-changing."</p>
+                    <div class="flex items-center space-x-4">
+                        <img class="w-12 h-12 rounded-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop" alt="Sarah J.">
+                        <div>
+                            <h5 class="font-bold text-slate-900 dark:text-white">Sarah Jenkins</h5>
+                            <p class="text-xs text-slate-500 uppercase tracking-widest">Medical Resident</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    <p class="text-slate-600 dark:text-slate-400 italic mb-8">"Accessible, professional, and results-driven. These modules are better than any finance course I've ever taken."</p>
+                    <div class="flex items-center space-x-4">
+                        <img class="w-12 h-12 rounded-full" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=100&auto=format&fit=crop" alt="Sarah J.">
+                        <div>
+                            <h5 class="font-bold text-slate-900 dark:text-white">Dr. Alex Chen</h5>
+                            <p class="text-xs text-slate-500 uppercase tracking-widest">Senior Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5.5: THE MENTAL EDGE - SEQUENTIAL CONCEPT STORYBOARD (UNIQUE LAYOUT) -->
+    <section class="py-24 bg-white dark:bg-slate-950 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20 text-center">
+                <span class="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">The Mental Edge</span>
+                <h2 class="text-4xl md:text-6xl font-heading font-extrabold text-slate-900 dark:text-white">Mastering the <span class="text-primary italic">Psychology</span> of Wealth.</h2>
+            </div>
+            
+            <div class="space-y-16 lg:space-y-32">
+                <!-- Concept 1: The Reward Loop (Left Focus) -->
+                <div class="group relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20 animate-on-scroll">
+                    <div class="absolute -left-10 top-0 text-[12rem] font-heading font-black text-slate-100 dark:text-white/5 pointer-events-none select-none leading-none opacity-50 group-hover:opacity-100 transition-opacity">01</div>
+                    <div class="w-full lg:w-1/2 relative">
+                        <div class="aspect-video rounded-[3rem] overflow-hidden shadow-2xl relative z-10 hover-float transition-all duration-700">
+                            <img src="assets/images/mental-edge-dopamine.png" alt="Dopamine" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                             <div class="absolute inset-0 bg-blue-600/20 mix-blend-overlay"></div>
+                        </div>
+                        <div class="absolute -inset-4 bg-blue-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    </div>
+                    <div class="w-full lg:w-1/2 relative space-y-6">
+                        <h3 class="text-3xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white leading-tight">Dopamine Loops in Debt</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">Traditional finance uses math. We use biology. By focusing on small wins first, we trigger "The Winner Effect" to crush your largest targets. It's not math; it's biology.</p>
+                        <div class="flex items-center gap-4 py-4 border-t border-slate-100 dark:border-slate-800">
+                             <span class="w-12 h-12 bg-blue-100 dark:bg-blue-900/40 rounded-xl flex items-center justify-center text-blue-600 font-bold">BH</span>
+                             <span class="font-bold text-slate-900 dark:text-white uppercase tracking-widest text-sm">Behavioral Focus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 2: Cortisol Control (Right Focus) -->
+                <div class="group relative flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20 animate-on-scroll">
+                    <div class="absolute -right-10 top-0 text-[12rem] font-heading font-black text-slate-100 dark:text-white/5 pointer-events-none select-none leading-none opacity-50 group-hover:opacity-100 transition-opacity">02</div>
+                    <div class="w-full lg:w-1/2 relative">
+                        <div class="aspect-video rounded-[3rem] overflow-hidden shadow-2xl relative z-10 hover-float transition-all duration-700">
+                            <img src="assets/images/mental-edge-stress.png" alt="Stress" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                             <div class="absolute inset-0 bg-blue-400/20 mix-blend-overlay"></div>
+                        </div>
+                        <div class="absolute -inset-4 bg-blue-400/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    </div>
+                    <div class="w-full lg:w-1/2 relative space-y-6 lg:text-right">
+                        <h3 class="text-3xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white leading-tight">Financial Clarity = Calm</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">Financial anxiety lowers your IQ in the moment. Our coaching stabilizes your nervous system so you can make high-level decisions with pure logical clarity.</p>
+                         <div class="flex items-center justify-end gap-4 py-4 border-t border-slate-100 dark:border-slate-800">
+                             <span class="font-bold text-slate-900 dark:text-white uppercase tracking-widest text-sm">Mental Wellness</span>
+                             <span class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 rounded-xl flex items-center justify-center text-primary font-bold">MW</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 3: Identity Protocol (Left Focus) -->
+                <div class="group relative flex flex-col lg:flex-row items-center gap-12 lg:gap-20 animate-on-scroll">
+                    <div class="absolute -left-10 top-0 text-[12rem] font-heading font-black text-slate-100 dark:text-white/5 pointer-events-none select-none leading-none opacity-50 group-hover:opacity-100 transition-opacity">03</div>
+                    <div class="w-full lg:w-1/2 relative">
+                        <div class="aspect-video rounded-[3rem] overflow-hidden shadow-2xl relative z-10 hover-float transition-all duration-700">
+                            <img src="assets/images/mental-edge-identity.png" alt="Identity" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                             <div class="absolute inset-0 bg-slate-600/20 mix-blend-overlay"></div>
+                        </div>
+                        <div class="absolute -inset-4 bg-slate-600/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    </div>
+                    <div class="w-full lg:w-1/2 relative space-y-6">
+                        <h3 class="text-3xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white leading-tight">Identity Shift Protocol</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">You don't just "budget"—you become a Debt-Free Graduate. We help you shed the "debtor" identity permanently through our behavior protocols.</p>
+                        <div class="flex items-center gap-4 py-4 border-t border-slate-100 dark:border-slate-800">
+                             <span class="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-xl flex items-center justify-center text-slate-600 font-bold">ID</span>
+                             <span class="font-bold text-slate-900 dark:text-white uppercase tracking-widest text-sm">Transformation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concept 4: Futurism Projection (Right Focus) -->
+                <div class="group relative flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20 animate-on-scroll">
+                    <div class="absolute -right-10 top-0 text-[12rem] font-heading font-black text-slate-100 dark:text-white/5 pointer-events-none select-none leading-none opacity-50 group-hover:opacity-100 transition-opacity">04</div>
+                    <div class="w-full lg:w-1/2 relative">
+                        <div class="aspect-video rounded-[3rem] overflow-hidden shadow-2xl relative z-10 hover-float transition-all duration-700">
+                            <img src="assets/images/mental-edge-future.png" alt="Future" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                             <div class="absolute inset-0 bg-indigo-500/20 mix-blend-overlay"></div>
+                        </div>
+                        <div class="absolute -inset-4 bg-indigo-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    </div>
+                    <div class="w-full lg:w-1/2 relative space-y-6 lg:text-right">
+                        <h3 class="text-3xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white leading-tight">Futurism Projection</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">We provide high-definition clarity on your "Future Self"—bridging the gap between today's sacrifice and tomorrow's prosperity.</p>
+                         <div class="flex items-center justify-end gap-4 py-4 border-t border-slate-100 dark:border-slate-800">
+                             <span class="font-bold text-slate-900 dark:text-white uppercase tracking-widest text-sm">Cognitive Science</span>
+                             <span class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/40 rounded-xl flex items-center justify-center text-indigo-600 font-bold">FP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: CTA -->
+    <section class="py-24 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-white blur-3xl -mr-48 -mt-48 rounded-full"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 blur-3xl -ml-48 -mb-48 rounded-full"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-heading font-extrabold mb-8">Your Freedom Journey Starts Today.</h2>
+            <p class="text-blue-100 text-lg mb-12">Take the first step with a complimentary Debt-Free Discovery Call. No pressure, just a plan.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="contact.html" class="cta-button bg-white text-primary text-lg w-full sm:w-auto">Book Your Session</a>
+                <a href="signup.html" class="cta-button border-2 border-white/50 hover:bg-white/10 text-white text-lg w-full sm:w-auto">Create Free Account</a>
+            </div>
+            <p class="mt-8 text-blue-200 text-sm">Join 2,400+ members who started this month.</p>
+        </div>
+    </section>
+
+    <!-- Footer (Standard) -->
+    <footer class="bg-white dark:bg-slate-900 py-12 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-y-12 gap-x-8 mb-12 text-center md:text-left">
+                <div class="flex flex-col items-center md:items-start col-span-1 md:col-span-2 lg:col-span-2">
+                    <a href="index.html" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-heading font-bold text-primary dark:text-blue-400">FinCoach</span>
+                    </a>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-xs mb-6 text-sm">Empowering families to reclaim their future through psychology-based financial transformation.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Platform</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="services.html" class="hover:text-primary">All Services</a></li>
+                        <li><a href="programs.html" class="hover:text-primary">Payoff Programs</a></li>
+                        <li><a href="pricing.html" class="hover:text-primary">Pricing Plans</a></li>
+                        <li><a href="dashboard.html" class="hover:text-primary">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Company</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+                        <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start col-span-1 md:col-span-1">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Community</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="#" class="hover:text-primary">Free Workshops</a></li>
+                        <li><a href="#" class="hover:text-primary">Success Stories</a></li>
+                        <li><a href="#" class="hover:text-primary">Blog & Education</a></li>
+                         <li><a href="coming-soon.html" class="hover:text-primary">Member Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-12 border-t border-slate-100 dark:border-slate-800 flex flex-col items-center text-sm text-slate-400">
+                <p>&copy; 2026 FinCoach Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script id="premium-hero-visual-logic">
+        document.addEventListener('DOMContentLoaded', () => {
+            const debtCount = document.getElementById('debt-count');
+            const wealthCount = document.getElementById('wealth-count');
+            const debtLandscape = document.getElementById('debt-landscape');
+            const wealthLandscape = document.getElementById('wealth-landscape');
+            const transBeam = document.getElementById('trans-beam');
+            const trendLine = document.getElementById('upward-trend');
+            const bars = document.querySelectorAll('.wealth-bar');
+            
+            const phaseDebt = document.getElementById('phase-debt');
+            const phaseMiddle = document.getElementById('phase-middle');
+            const phaseWealth = document.getElementById('phase-wealth');
+
+            function animateNumber(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const current = Math.floor(progress * (end - start) + start);
+                    element.innerHTML = current.toLocaleString('en-IN');
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            function startTransformation() {
+                // PHASE 1: Collapse Debt
+                setTimeout(() => {
+                    animateNumber(debtCount, 120000, 0, 3000);
+                    transBeam.classList.add('animate-beam');
+                    debtLandscape.style.transform = 'scale(0.8) translateY(20px)';
+                    debtLandscape.style.opacity = '0';
+                    debtLandscape.style.filter = 'blur(10px)';
+                }, 500);
+
+                // PHASE 2: Emergence
+                setTimeout(() => {
+                    wealthLandscape.classList.add('active');
+                    wealthLandscape.style.opacity = '1';
+                    wealthLandscape.style.transform = 'translateY(0)';
+                    
+                    phaseDebt.classList.add('opacity-30', 'border-transparent');
+                    phaseMiddle.classList.remove('opacity-30');
+                    phaseMiddle.classList.add('text-cyan-500', 'font-black', 'border-b-2', 'border-cyan-500/30', 'pb-2');
+                }, 2000);
+
+                // PHASE 3: Compound Growth
+                setTimeout(() => {
+                    animateNumber(wealthCount, 0, 250000, 3000);
+                    trendLine.style.strokeDashoffset = '0';
+                    
+                    bars.forEach(bar => {
+                        bar.classList.add('active');
+                        bar.querySelector('i').classList.add('group-active'); // Manual trigger for checkmarks
+                    });
+                    
+                    // Activate checkmark/rocket logic
+                    bars.forEach(bar => bar.classList.add('group'));
+                    setTimeout(() => {
+                        bars.forEach(bar => bar.classList.add('active'));
+                    }, 100);
+
+                    phaseMiddle.classList.add('opacity-30', 'border-transparent');
+                    phaseWealth.classList.remove('opacity-30');
+                    phaseWealth.classList.add('text-emerald-500', 'font-black', 'border-b-2', 'border-emerald-500/30', 'pb-2');
+                }, 3500);
+            }
+
+            // Trigger after initial load
+            setTimeout(startTransformation, 1200);
+
+            // Re-trigger on scroll reveal (if desired)
+            // Or simple hover effect
+            const visual = document.getElementById('transformation-visual');
+            visual.addEventListener('mouseenter', () => {
+                trendLine.style.filter = 'drop-shadow(0 0 12px rgba(16,185,129,0.4))';
+            });
+            visual.addEventListener('mouseleave', () => {
+                trendLine.style.filter = 'none';
+            });
+        });
+    </script>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>
+</html>

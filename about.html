@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>About Us | FinCoach - Financial Freedom Mission</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#F1F5F9',
+                        accent: '#10B981',
+                        warning: '#F59E0B',
+                        error: '#EF4444'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white text-slate-900 transition-colors duration-300 has-fixed-header">
+
+    <!-- Header -->
+    <header class="bg-white dark:bg-slate-900 shadow-sm site-header transition-colors duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 flex items-center justify-between h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-heading font-bold text-primary dark:text-blue-400">FinCoach</span>
+                </a>
+            </div>
+
+            <!-- Main Nav -->
+            <div class="hidden xl:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="index.html" class="hover:text-primary transition-colors">Home 1</a>
+                <a href="home-2.html" class="hover:text-primary transition-colors">Home 2</a>
+                <a href="about.html" class="text-primary border-b-2 border-primary pb-1">About</a>
+                <a href="services.html" class="hover:text-primary transition-colors">Services</a>
+                <a href="programs.html" class="hover:text-primary transition-colors">Programs</a>
+                <a href="pricing.html" class="hover:text-primary transition-colors">Pricing</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <a href="dashboard.html" aria-label="Dashboard" title="Dashboard" class="!hidden xl:!inline-flex cta-button border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-slate-900 !h-10 !w-10 !px-0">
+                    <i class="fas fa-columns text-sm"></i>
+                </a>
+                <a href="login.html" class="!hidden xl:!inline-flex cta-button border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-slate-900 !h-10 text-sm">Login</a>
+                
+                <button id="dark-mode-toggle" class="!hidden xl:!inline-flex p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400 focus:outline-none">
+                    <i class="fas fa-moon w-6 h-6 flex items-center justify-center"></i>
+                </button>
+                
+                <button id="rtl-toggle" class="!hidden xl:!inline-flex p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400 focus:outline-none">
+                    <i class="fas fa-language w-6 h-6 flex items-center justify-center"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button type="button" id="mobile-menu-btn" class="xl:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-md">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <!-- Mobile Menu Backdrop -->
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[45] hidden opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="xl:hidden fixed top-0 right-0 h-full w-80 bg-white dark:bg-slate-900 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div class="px-6 py-6 h-full flex flex-col">
+                <!-- Drawer Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <span class="text-xl font-heading font-bold text-slate-900 dark:text-white">Menu</span>
+                    <button id="mobile-menu-close" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 focus:outline-none">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="space-y-4 flex-grow">
+                    <a href="index.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Home 1</a>
+                    <a href="home-2.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Home 2</a>
+                    <a href="about.html" class="block py-2 text-primary font-bold text-lg">About</a>
+                    <a href="services.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Services</a>
+                    <a href="programs.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Programs</a>
+                    <a href="pricing.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Pricing</a>
+                    <a href="contact.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Contact</a>
+                    
+                    <!-- Mobile Actions (Continuous) -->
+                    <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
+                        <div class="flex items-center space-x-6 mb-8">
+                            <a href="dashboard.html" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-columns text-xl"></i>
+                            </a>
+                            <button id="dark-mode-toggle" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-moon text-xl"></i>
+                            </button>
+                            <button id="rtl-toggle" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-language text-xl"></i>
+                            </button>
+                        </div>
+                        <a href="login.html" class="cta-button border-2 border-primary text-primary text-center py-3 rounded-lg font-bold block">Login</a>
+                    </div>
+                </div>
+                
+                <!-- Bottom Spacer for drawer height -->
+                <div class="mt-auto pb-4"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO BREADCRUMB -->
+    <section class="py-24 bg-primary text-white relative hero-section flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+             <div class="absolute w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.1),transparent_50%)]"></div>
+        </div>
+        <div class="relative z-10 text-center max-w-3xl mx-auto px-4">
+            <nav class="flex justify-center mb-6 space-x-2 text-blue-200 text-sm font-bold uppercase tracking-widest">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span class="text-white">About Us</span>
+            </nav>
+            <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-8">Our Mission: Your Debt Freedom.</h1>
+            <p class="text-blue-100 text-lg">We started with one goal: To help 10,000 families reclaim their future by destroying credit card debt once and for all.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 2: OUR STORY / MISSION -->
+    <section class="py-24 bg-white dark:bg-slate-950 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" alt="Our Team" class="rounded-[40px] shadow-sm transform -rotate-2 hover:rotate-0 transition-transform duration-500 border-8 border-slate-50 dark:border-slate-900">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-6">Born From Personal Struggle</h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">Our founders, Marcus and Sarah Jenkins, spent their early marriage under the crush of $120,000 in student and credit card debt. After cracking the code on debt reduction through psychology-based finance, they dedicated their lives to helping others do the same.</p>
+                    <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">FinCoach isn't just a platform; it's a movement toward generational wealth. We believe that when families are debt-free, they can be generous, creative, and fully alive.</p>
+                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-slate-100 dark:border-slate-800">
+                        <div>
+                            <div class="text-3xl font-bold text-primary dark:text-blue-400 mb-2 font-heading">15k+</div>
+                            <p class="text-slate-500 text-sm">Lives Transformed</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-blue-500 mb-2 font-heading">$250M</div>
+                            <p class="text-slate-500 text-sm">Debt Eliminated</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3.5: THE DIGITAL ECOSYSTEM OF TRUST (UNIQUE DESIGN 1) -->
+    <section class="py-32 bg-slate-50 dark:bg-slate-900 overflow-hidden relative">
+        <!-- Abstract Background Glows -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-20">
+                <div class="lg:w-1/2 animate-on-scroll">
+                    <span class="text-primary dark:text-blue-400 font-black uppercase tracking-[0.4em] text-xs mb-4 block underline underline-offset-8">Our Network</span>
+                    <h2 class="text-4xl md:text-6xl font-heading font-black text-slate-900 dark:text-white leading-tight mb-8">
+                        The Digital <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Ecosystem of Trust.</span>
+                    </h2>
+                    <p class="text-lg text-slate-500 dark:text-slate-400 leading-relaxed mb-10">
+                        FinCoach isn't a silo. We are the hub of a global financial intelligence network, integrating real-time data nodes with elite human strategy to protect and grow your wealth at every level of the protocol.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm hover:scale-105 transition-all">
+                             <div class="text-2xl font-black text-primary dark:text-blue-400 mb-1">500k+</div>
+                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Global Data Points Synchronized</p>
+                        </div>
+                        <div class="p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm hover:scale-105 transition-all">
+                             <div class="text-2xl font-black text-blue-500 mb-1">99.9%</div>
+                             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Fiduciary Accuracy Shield</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 relative group animate-on-scroll" style="animation-delay: 0.3s">
+                    <div class="relative w-full h-[500px] rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
+                        <img src="assets/images/about-network.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent"></div>
+                    </div>
+                    <!-- Hanging UI Badge -->
+                    <div class="absolute -bottom-8 -left-8 p-8 bg-white/20 backdrop-blur-2xl border border-white/20 rounded-[3rem] shadow-2xl animate-float">
+                         <div class="flex items-center space-x-4">
+                              <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white"><i class="fas fa-lock"></i></div>
+                              <div>
+                                  <p class="text-xs font-bold text-black dark:text-white uppercase tracking-widest">Protocol Integrity</p>
+                                  <p class="text-[10px] text-slate-600 dark:text-slate-400">Military-Grade Data Encryption</p>
+                              </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3.7: THE SUMMIT OF FINANCIAL SUCCESS (UNIQUE DESIGN 2) -->
+    <section class="py-32 bg-white dark:bg-slate-950 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-24">
+                <div class="lg:w-1/2 animate-on-scroll">
+                    <div class="w-20 h-1 bg-primary mb-8 rounded-full"></div>
+                    <h2 class="text-4xl md:text-7xl font-heading font-black text-slate-900 dark:text-white leading-tight mb-8">
+                        The Summit of <br/><span class="text-primary dark:text-blue-400">Your Story.</span>
+                    </h2>
+                    <blockquote class="text-2xl font-heading font-bold text-slate-400 dark:text-slate-500 italic mb-10 leading-relaxed pl-8 border-l-4 border-slate-100 dark:border-slate-800">
+                        "Your peak is not defined by where you start, but by the velocity of your ascent out of debt."
+                    </blockquote>
+                    <p class="text-slate-500 dark:text-slate-400 mb-12">
+                        Our transformation roadmap is a climb. We move from the valley of high-interest fear to the plateau of stabilization, and finally, to the sunlit peak of generative wealth. Your legacy starts at the summit.
+                    </p>
+                    <a href="contact.html" class="inline-flex items-center space-x-4 bg-primary text-white px-10 py-5 rounded-[2rem] font-black uppercase text-xs tracking-[0.2em] hover:bg-slate-900 transition-all shadow-xl shadow-primary/20">
+                        <span>Ascend Now</span>
+                        <i class="fas fa-arrow-up"></i>
+                    </a>
+                </div>
+
+                <div class="lg:w-1/2 relative animate-on-scroll" style="animation-delay: 0.3s">
+                     <!-- Journey Visual -->
+                     <div class="relative w-full h-[600px] rounded-[5rem] overflow-hidden group shadow-2xl">
+                         <img src="assets/images/about-journey.png" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105">
+                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-white/10"></div>
+                         
+                         <!-- Roadmap Markers Floating overlay -->
+                         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 space-y-4">
+                             <div class="bg-white/10 backdrop-blur-md px-6 py-3 border border-white/20 rounded-full text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap animate-float" style="animation-delay: -1s">Stabilization Phase</div>
+                             <div class="bg-primary px-6 py-3 rounded-full text-white text-[10px] font-bold uppercase tracking-widest whitespace-nowrap translate-x-10 animate-float" style="animation-delay: -2.5s">Wealth Apex</div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: THE TEAM -->
+    <section class="py-24 bg-white dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">The Freedom Architects</h2>
+                    <p class="text-slate-500">Certified by the highest standards of financial coaching excellence.</p>
+                </div>
+                <a href="contact.html" class="hidden md:inline-flex cta-button bg-primary text-white h-12 px-8">Work With Them</a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center group">
+                    <img src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?q=80&w=400&h=400&auto=format&fit=crop" alt="Coach 1" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover transition-all duration-500 shadow-xl group-hover:scale-110">
+                    <h5 class="text-xl font-bold dark:text-white mb-1">Adrian Thorne</h5>
+                    <p class="text-primary font-bold text-sm uppercase tracking-widest mb-4">Head Strategist</p>
+                    <p class="text-slate-500 text-sm max-w-xs mx-auto">Specialist in debt consolidation and credit negotiation with 15+ years experience.</p>
+                </div>
+                <div class="text-center group">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&h=400&auto=format&fit=crop" alt="Coach 2" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover transition-all duration-500 shadow-xl group-hover:scale-110">
+                    <h5 class="text-xl font-bold dark:text-white mb-1">Dr. Elena Rossi</h5>
+                    <p class="text-primary font-bold text-sm uppercase tracking-widest mb-4">Behavioral Lead</p>
+                    <p class="text-slate-500 text-sm max-w-xs mx-auto">Ph.D. in Consumer Psychology. Helping users break spending loops permanently.</p>
+                </div>
+                <div class="text-center group">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop" alt="Coach 3" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover transition-all duration-500 shadow-xl group-hover:scale-110">
+                    <h5 class="text-xl font-bold dark:text-white mb-1">Julian Brooks</h5>
+                    <p class="text-primary font-bold text-sm uppercase tracking-widest mb-4">Wealth Architect</p>
+                    <p class="text-slate-500 text-sm max-w-xs mx-auto">Focused on the 'Next Step'—transitioning from zero debt to aggressive investing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Standard) -->
+    <footer class="bg-white dark:bg-slate-900 py-12 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-y-12 gap-x-8 mb-12 text-center md:text-left">
+                <div class="flex flex-col items-center md:items-start col-span-1 md:col-span-2 lg:col-span-2">
+                    <a href="index.html" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-heading font-bold text-primary dark:text-blue-400">FinCoach</span>
+                    </a>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-xs mb-6 text-sm">Empowering families to reclaim their future through psychology-based financial transformation.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Platform</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="services.html" class="hover:text-primary">All Services</a></li>
+                        <li><a href="programs.html" class="hover:text-primary">Payoff Programs</a></li>
+                        <li><a href="pricing.html" class="hover:text-primary">Pricing Plans</a></li>
+                        <li><a href="dashboard.html" class="hover:text-primary">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Company</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+                        <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start col-span-1 md:col-span-1">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Community</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="#" class="hover:text-primary">Free Workshops</a></li>
+                        <li><a href="#" class="hover:text-primary">Success Stories</a></li>
+                        <li><a href="#" class="hover:text-primary">Blog & Education</a></li>
+                         <li><a href="coming-soon.html" class="hover:text-primary">Member Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-12 border-t border-slate-100 dark:border-slate-800 flex flex-col items-center text-sm text-slate-400 text-center">
+                <p>&copy; 2026 FinCoach Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

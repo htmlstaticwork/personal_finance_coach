@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Curated Programs | FinCoach - Financial Education</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#1E3A8A', secondary: '#F1F5F9' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Poppins', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white text-slate-900 transition-colors duration-300 has-fixed-header">
+
+    <header class="bg-white dark:bg-slate-900 shadow-sm site-header transition-colors duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 flex items-center justify-between h-20">
+            <div class="flex-shrink-0 flex items-center">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-heading font-bold text-primary dark:text-blue-400">FinCoach</span>
+                </a>
+            </div>
+
+            <div class="hidden xl:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="index.html" class="hover:text-primary transition-colors">Home 1</a>
+                <a href="home-2.html" class="hover:text-primary transition-colors">Home 2</a>
+                <a href="about.html" class="hover:text-primary transition-colors">About</a>
+                <a href="services.html" class="hover:text-primary transition-colors">Services</a>
+                <a href="programs.html" class="text-primary border-b-2 border-primary pb-1">Programs</a>
+                <a href="pricing.html" class="hover:text-primary transition-colors">Pricing</a>
+                <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="dashboard.html" aria-label="Dashboard" title="Dashboard" class="!hidden xl:!inline-flex cta-button border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-slate-900 !h-10 !w-10 !px-0">
+                    <i class="fas fa-columns text-sm"></i>
+                </a>
+                <a href="login.html" class="!hidden xl:!inline-flex cta-button border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-400 dark:hover:text-slate-900 !h-10 text-sm">Login</a>
+                
+                <button id="dark-mode-toggle" class="!hidden xl:!inline-flex p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400 focus:outline-none">
+                    <i class="fas fa-moon w-6 h-6 flex items-center justify-center"></i>
+                </button>
+                
+                <button id="rtl-toggle" class="!hidden xl:!inline-flex p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400 focus:outline-none">
+                    <i class="fas fa-language w-6 h-6 flex items-center justify-center"></i>
+                </button>
+
+                <button type="button" id="mobile-menu-btn" class="xl:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-md">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Backdrop -->
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[45] hidden opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="xl:hidden fixed top-0 right-0 h-full w-80 bg-white dark:bg-slate-900 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div class="px-6 py-6 h-full flex flex-col">
+                <!-- Drawer Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <span class="text-xl font-heading font-bold text-slate-900 dark:text-white">Menu</span>
+                    <button id="mobile-menu-close" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 focus:outline-none">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="space-y-4 flex-grow">
+                    <a href="index.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Home 1</a>
+                    <a href="home-2.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Home 2</a>
+                    <a href="about.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">About</a>
+                    <a href="services.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Services</a>
+                    <a href="programs.html" class="block py-2 text-primary font-bold text-lg">Programs</a>
+                    <a href="pricing.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Pricing</a>
+                    <a href="contact.html" class="block py-2 text-slate-600 dark:text-slate-300 text-lg hover:text-primary transition-colors">Contact</a>
+                    
+                    <!-- Mobile Actions (Continuous) -->
+                    <div class="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800">
+                        <div class="flex items-center space-x-6 mb-8">
+                            <a href="dashboard.html" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-columns text-xl"></i>
+                            </a>
+                            <button id="dark-mode-toggle" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-moon text-xl"></i>
+                            </button>
+                            <button id="rtl-toggle" class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-blue-400">
+                                <i class="fas fa-language text-xl"></i>
+                            </button>
+                        </div>
+                        <a href="login.html" class="cta-button border-2 border-primary text-primary text-center py-3 rounded-lg font-bold block">Login</a>
+                    </div>
+                </div>
+                
+                <!-- Bottom Spacer for drawer height -->
+                <div class="mt-auto pb-4"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: PROGRAM HERO -->
+    <section class="py-24 bg-primary text-white text-center hero-section overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <h1 class="text-4xl md:text-6xl font-heading font-extrabold mb-6">Designed For Freedom.</h1>
+            <p class="text-blue-100 text-lg leading-relaxed">Our structured educational modules and interactive cohorts provide the structure you've been missing in your financial life.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 2: PROGRAM LIST -->
+    <section class="py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="relative group bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <img src="assets/images/debt-exit.png" alt="Debt Exit Protocol" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="p-10">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-200 text-xs font-bold px-3 py-1 rounded">MOST POPULAR</span>
+                            <span class="text-slate-400 text-xs font-bold uppercase tracking-widest">12 Weeks</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-extrabold dark:text-white mb-4">The Debt Exit Protocol</h3>
+                        <p class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">A complete transformation program that starts with psychological wiring and ends with total credit card balance of zero.</p>
+                        <a href="pricing.html" class="inline-flex items-center text-primary dark:text-blue-400 font-extrabold hover:translate-x-2 transition-transform">Enroll Now <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+                <div class="relative group bg-slate-50 dark:bg-slate-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <img src="assets/images/wealth-builder.png" alt="The Wealth-Builder Lab" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="p-10">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold px-3 py-1 rounded">ADVANCED</span>
+                            <span class="text-slate-400 text-xs font-bold uppercase tracking-widest">Ongoing Access</span>
+                        </div>
+                        <h3 class="text-2xl font-heading font-extrabold dark:text-white mb-4">The Wealth-Builder Lab</h3>
+                        <p class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">For our graduates. Shift your mindset from protection to growth and start building a high-yield legacy fund.</p>
+                        <a href="pricing.html" class="inline-flex items-center text-primary dark:text-blue-400 font-extrabold hover:translate-x-2 transition-transform">Enroll Now <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: COMPARISON -->
+    <section class="py-24 bg-secondary dark:bg-slate-950 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-4">Choose Your Path</h2>
+                <p class="text-slate-600 dark:text-slate-400">Two ways to experience our programs, depending on your commitment level.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800 flex items-start space-x-6">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-primary dark:text-blue-400 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-desktop"></i></div>
+                    <div><h4 class="font-extrabold dark:text-white mb-2">Self-Paced Mastery</h4><p class="text-sm text-slate-500">Access all video modules and templates. Work at your own rhythm without direct coaching calls.</p></div>
+                </div>
+                 <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border-2 border-primary dark:border-blue-400 flex items-start space-x-6 relative">
+                    <div class="absolute -top-3 right-6 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Recommended</div>
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-primary dark:text-blue-400 rounded-xl flex items-center justify-center flex-shrink-0"><i class="fas fa-headset"></i></div>
+                    <div><h4 class="font-extrabold dark:text-white mb-2">Cohort-Based Coaching</h4><p class="text-sm text-slate-500">Includes direct access to coaches, peer accountability groups, and monthly live strategy workshops.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: THE ACCELERATOR COHORT (UNIQUE DESIGN 3) -->
+    <section class="py-32 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Content Side -->
+                <div class="lg:w-1/2">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 bg-primary/10 rounded-full mb-8 animate-on-scroll">
+                        <i class="fas fa-users text-primary dark:text-blue-400"></i>
+                        <span class="text-xs font-black uppercase tracking-widest text-primary dark:text-blue-400">Collaborative Growth</span>
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-heading font-black text-slate-900 dark:text-white leading-tight mb-12 animate-on-scroll">
+                        The Accelerator <br/><span class="text-primary dark:text-blue-400">Cohort Experience</span>
+                    </h2>
+                    
+                    <!-- Dynamic Vertical Timeline -->
+                    <div class="relative pl-8 space-y-12">
+                        <!-- Connecting Line -->
+                        <div class="absolute left-[11px] top-4 w-[2px] h-full bg-slate-200 dark:bg-slate-800 timeline-line-animate animate-on-scroll"></div>
+                        
+                        <!-- Step 1 -->
+                        <div class="relative stagger-reveal animate-on-scroll reveal-delay-1">
+                            <div class="absolute -left-[35px] w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-4 border-primary flex items-center justify-center z-10">
+                                <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+                            </div>
+                            <h4 class="text-xl font-bold dark:text-white mb-2">Phase 1: Psychological Rewiring</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm">Join 20 peers in breaking the dopamine loops that drive impulsive spending habits.</p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative stagger-reveal animate-on-scroll reveal-delay-2">
+                             <div class="absolute -left-[35px] w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-4 border-blue-400 flex items-center justify-center z-10"></div>
+                            <h4 class="text-xl font-bold dark:text-white mb-2">Phase 2: Cash-Flow Engineering</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm">Collaborative workshop to build a friction-free budget that actually survives the weekend.</p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative stagger-reveal animate-on-scroll reveal-delay-3">
+                             <div class="absolute -left-[35px] w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-500 flex items-center justify-center z-10"></div>
+                            <h4 class="text-xl font-bold dark:text-white mb-2">Phase 3: The Velocity Launch</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm">Deploying the Smart Snowball algorithm to start crushing your high-interest targets.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Side -->
+                <div class="lg:w-1/2 relative group animate-on-scroll">
+                    <div class="relative w-full aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 transition-all duration-700 hover:rotate-3">
+                        <img src="assets/images/finance-cohort.png" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Finance Cohort">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/40 to-transparent mix-blend-overlay"></div>
+                    </div>
+                    
+                    <!-- Floating Data Badge -->
+                    <div class="absolute -bottom-10 -left-10 p-10 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl animate-float-orbit">
+                        <div class="text-4xl font-black text-primary dark:text-blue-400">92%</div>
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: ELITE 1-ON-1 CUSTOM STRATEGY (UNIQUE DESIGN 4) -->
+    <section class="py-32 bg-white dark:bg-slate-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-24">
+                <!-- Visual Mosaic Side -->
+                <div class="lg:w-[60%] relative animate-on-scroll">
+                    <div class="grid grid-cols-1 md:grid-cols-[1.4fr_0.6fr] grid-rows-2 gap-6 h-[600px]">
+                        <div class="row-span-2 relative rounded-[4rem] overflow-hidden shadow-2xl hover-float">
+                            <img src="assets/images/one-on-one-coach.png" class="w-full h-full object-cover" alt="Elite Coach">
+                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                             <div class="absolute bottom-8 left-8">
+                                <span class="text-xs font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase">Elite Access</span>
+                                <h3 class="text-2xl font-bold text-white mt-2">Private Mentorship</h3>
+                             </div>
+                        </div>
+                        <div class="bg-primary/5 dark:bg-white/5 rounded-[3rem] flex flex-col justify-center items-center p-8 border border-primary/10 stagger-reveal animate-on-scroll">
+                            <i class="fas fa-fingerprint text-4xl text-primary dark:text-blue-400 mb-4 animate-pulse"></i>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-300 text-center">Custom Wealth DNA Profile</span>
+                        </div>
+                        <div class="bg-blue-500/5 rounded-[3rem] p-8 border border-blue-500/10 stagger-reveal animate-on-scroll reveal-delay-2 flex flex-col justify-center items-center">
+                            <i class="fas fa-shield-halved text-4xl text-blue-500 mb-4 animate-float"></i>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-300 text-center">Legacy Protection Shield</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large Text Content Side -->
+                <div class="lg:w-[40%] animate-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-heading font-black text-slate-900 dark:text-white leading-[0.9] tracking-tighter mb-10">
+                        ONE BRAIN.<br/><span class="text-primary dark:text-blue-400">ONE PLAN.</span><br/>TOTAL FREEDOM.
+                    </h2>
+                    <p class="text-xl text-slate-500 mb-12 max-w-lg leading-relaxed">
+                        For those who demand absolute precision. Our Elite 1-on-1 strategy provides a direct neurological match with our top financial architects. We don't just advise; we execute alongside you.
+                    </p>
+                    <div class="space-y-6 mb-12">
+                         <div class="flex items-center space-x-4 p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group cursor-pointer border border-transparent hover:border-slate-100 dark:hover:border-slate-800">
+                            <div class="w-12 h-12 rounded-xl bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold dark:text-white">Psychology-First Strategy</h4>
+                                <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em]">Engineered for your personality type</p>
+                            </div>
+                         </div>
+                         <div class="flex items-center space-x-4 p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors group cursor-pointer border border-transparent hover:border-slate-100 dark:hover:border-slate-800">
+                            <div class="w-12 h-12 rounded-xl bg-white dark:bg-slate-800 shadow-lg flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold dark:text-white">High-Yield Optimization</h4>
+                                <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em]">Maximizing every cent of your cash flow</p>
+                            </div>
+                         </div>
+                    </div>
+                    <a href="contact.html" class="inline-block px-12 py-6 bg-slate-950 dark:bg-white text-white dark:text-slate-950 rounded-full font-black uppercase text-sm tracking-[0.3em] shadow-2xl hover:bg-primary transition-all">Apply for VIP Mentorship</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: TESTIMONIALS -->
+    <section class="py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-16">Program Success Stories</h2>
+            <div class="flex flex-col lg:flex-row gap-8 items-stretch">
+                <div class="flex-1 bg-slate-50 dark:bg-slate-800 p-10 rounded-3xl text-left border border-slate-100 dark:border-slate-700">
+                    <p class="text-lg text-slate-600 dark:text-slate-300 italic mb-8">"The structure of the Exit Protocol was exactly what I needed. It's not just a course; it's a lifecycle shift. $22k in debt gone in 11 months."</p>
+                    <div class="flex items-center space-x-4"><img class="w-12 h-12 rounded-full" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100" alt=""><cite class="font-bold dark:text-white not-italic">David Miller, Freelancer</cite></div>
+                </div>
+                 <div class="flex-1 bg-slate-50 dark:bg-slate-800 p-10 rounded-3xl text-left border border-slate-100 dark:border-slate-700">
+                    <p class="text-lg text-slate-600 dark:text-slate-300 italic mb-8">"I've taken many finance courses, but none go as deep into the mindset as FinCoach does. I finally feel in control of my money."</p>
+                    <div class="flex items-center space-x-4"><img class="w-12 h-12 rounded-full" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100" alt=""><cite class="font-bold dark:text-white not-italic">Samantha Reed, Analyst</cite></div>
+                </div>
+            </div>
+             <a href="contact.html" class="cta-button bg-primary text-white mt-16 h-14 px-12 shadow-xl hover:shadow-primary/30">Apply to Next Cohort</a>
+        </div>
+    </section>
+
+    <!-- Footer (Standard) -->
+    <footer class="bg-white dark:bg-slate-900 py-12 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-y-12 gap-x-8 mb-12 text-center md:text-left">
+                <div class="flex flex-col items-center md:items-start col-span-1 md:col-span-2 lg:col-span-2">
+                    <a href="index.html" class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-heading font-bold text-primary dark:text-blue-400">FinCoach</span>
+                    </a>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-xs mb-6 text-sm">Empowering families to reclaim their future through psychology-based financial transformation.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Platform</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="services.html" class="hover:text-primary">All Services</a></li>
+                        <li><a href="programs.html" class="hover:text-primary">Payoff Programs</a></li>
+                        <li><a href="pricing.html" class="hover:text-primary">Pricing Plans</a></li>
+                        <li><a href="dashboard.html" class="hover:text-primary">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Company</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="about.html" class="hover:text-primary">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Contact</a></li>
+                        <li><a href="#" class="hover:text-primary">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-start col-span-1 md:col-span-1">
+                    <h6 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-xs">Community</h6>
+                    <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                        <li><a href="#" class="hover:text-primary">Free Workshops</a></li>
+                        <li><a href="#" class="hover:text-primary">Success Stories</a></li>
+                        <li><a href="#" class="hover:text-primary">Blog & Education</a></li>
+                         <li><a href="coming-soon.html" class="hover:text-primary">Member Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-12 border-t border-slate-100 dark:border-slate-800 flex flex-col items-center text-sm text-slate-400 text-center">
+                <p>&copy; 2026 FinCoach Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Create Free Account | FinCoach Transformation</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#1E3A8A',secondary:'#F1F5F9'},fontFamily:{sans:['Inter','sans-serif'],heading:['Poppins','sans-serif']}}}}</script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-secondary dark:bg-slate-950 flex items-center justify-center min-h-screen p-4 transition-colors duration-300">
+    <!-- Utility Toggles -->
+    <div class="fixed top-6 right-6 flex items-center space-x-2 md:space-x-4 z-50">
+        <button id="rtl-toggle" class="w-10 h-10 bg-white dark:bg-slate-900 shadow-lg rounded-full flex items-center justify-center text-slate-500 hover:text-primary transition-all">
+            <i class="fas fa-language"></i>
+        </button>
+        <button id="dark-mode-toggle" class="w-10 h-10 bg-white dark:bg-slate-900 shadow-lg rounded-full flex items-center justify-center text-slate-500 hover:text-primary transition-all">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <div class="w-full max-w-lg bg-white dark:bg-slate-900 rounded-[40px] shadow-2xl p-8 md:p-12 relative overflow-hidden transition-all animate-on-scroll">
+        <div class="absolute top-0 left-0 w-32 h-32 bg-blue-500/5 rounded-full -ml-16 -mt-16"></div>
+        
+        <!-- Logo -->
+        <div class="text-center mb-10">
+            <a href="index.html" class="inline-flex items-center space-x-3 mb-8">
+                <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg"><i class="fas fa-chart-line text-white text-2xl"></i></div>
+                <span class="text-2xl font-heading font-extrabold text-primary dark:text-blue-400">FinCoach</span>
+            </a>
+            <h2 class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-2">Create Your Profile.</h2>
+            <p class="text-slate-500 text-sm">Join 15K+ members on the path to zero debt.</p>
+        </div>
+
+        <form class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">First Name</label>
+                    <input type="text" placeholder="John" class="w-full h-14 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-6 focus:ring-2 focus:ring-primary dark:text-white transition-all outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Last Name</label>
+                    <input type="text" placeholder="Doe" class="w-full h-14 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-6 focus:ring-2 focus:ring-primary dark:text-white transition-all outline-none">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Email Address</label>
+                <input type="email" placeholder="john@example.com" class="w-full h-14 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-6 focus:ring-2 focus:ring-primary dark:text-white transition-all outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Password</label>
+                <div class="relative"><input type="password" placeholder="••••••••" class="w-full h-14 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl px-6 focus:ring-2 focus:ring-primary dark:text-white transition-all outline-none pr-12"><i class="fas fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 cursor-pointer hover:text-primary transition-colors"></i></div>
+                <p class="mt-2 text-[10px] text-slate-400">Must be at least 8 characters with one special symbol.</p>
+            </div>
+
+            <div class="flex items-start space-x-3 text-sm text-slate-500">
+                <input type="checkbox" class="mt-1 w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary">
+                <p>I agree to the <a href="#" class="text-primary font-bold hover:underline">Terms of Service</a> and <a href="#" class="text-primary font-bold hover:underline">Privacy Policy</a>.</p>
+            </div>
+
+            <button type="button" onclick="window.location.href='dashboard.html'" class="cta-button bg-primary text-white w-full h-14 shadow-xl hover:shadow-primary/30">Create Free Account</button>
+        </form>
+
+        <div class="mt-10 pt-10 border-t border-slate-100 dark:border-slate-800 text-center">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Or register with</p>
+            <div class="grid grid-cols-2 gap-4">
+                <button class="h-14 border-2 border-slate-100 dark:border-slate-800 rounded-2xl flex items-center justify-center space-x-3 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"><i class="fab fa-google"></i><span class="font-bold text-sm dark:text-white">Google</span></button>
+                <button class="h-14 border-2 border-slate-100 dark:border-slate-800 rounded-2xl flex items-center justify-center space-x-3 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"><i class="fab fa-apple"></i><span class="font-bold text-sm dark:text-white">Apple</span></button>
+            </div>
+            <p class="mt-10 text-slate-500 text-sm">Already a member? <a href="login.html" class="text-primary font-bold hover:underline">Sign In</a></p>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
