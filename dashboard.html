@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-secondary dark:bg-slate-950 transition-colors duration-300 min-h-screen overflow-x-hidden">
+<body class="bg-secondary dark:bg-slate-950 transition-colors duration-300 min-h-screen overflow-x-hidden lg:overflow-hidden">
 
     <!-- DASHBOARD CONTAINER -->
     <div class="flex h-screen w-full relative">
         
         <!-- Sidebar -->
-        <aside id="dashboard-sidebar" class="hidden lg:flex w-72 bg-white dark:bg-slate-900 flex-col h-full border-r border-slate-100 dark:border-slate-800 transition-all z-50">
+        <aside id="dashboard-sidebar" class="hidden lg:flex w-72 bg-white dark:bg-slate-900 flex-col h-full lg:h-screen lg:sticky lg:top-0 border-r border-slate-100 dark:border-slate-800 transition-all z-50">
             <div class="p-8 pb-12">
                 <div class="flex items-center justify-between mb-10">
                     <a href="index.html" class="flex items-center space-x-3">
@@ -40,9 +40,6 @@
                     </a>
                     <a href="#learning" data-section="learning" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
                         <i class="fas fa-graduation-cap"></i> <span>Academy</span>
-                    </a>
-                    <a href="#billing" data-section="billing" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
-                        <i class="fas fa-receipt"></i> <span>Billing</span>
                     </a>
                     <a href="#settings" data-section="settings" class="nav-link flex items-center space-x-3 text-slate-400 hover:text-primary dark:hover:text-blue-400 p-4 rounded-2xl transition-all">
                         <i class="fas fa-cog"></i> <span>Settings</span>
@@ -71,7 +68,7 @@
                      </button>
                 </div>
                 
-                <h2 class="text-[10px] md:text-sm font-heading font-extrabold text-primary dark:text-blue-400 uppercase tracking-[0.2em]">
+                <h2 class="text-xs md:text-sm font-heading font-extrabold text-primary dark:text-blue-400 uppercase tracking-[0.2em]">
                     Client Dashboard
                 </h2>
                 
@@ -181,7 +178,7 @@
                 <!-- OVERVIEW SECTION -->
                 <div id="overview" class="dashboard-section space-y-8 animate-in fade-in transition-all duration-300 transition-all">
                     <!-- EXISTING CONTENT -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                         <div class="bg-white dark:bg-slate-900 p-8 rounded-[30px] shadow-sm border border-slate-50 dark:border-slate-800 flex flex-col justify-between h-[200px]">
                             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Total Debt Balance</p>
                             <div class="text-3xl font-heading font-extrabold text-slate-900 dark:text-white mb-2">$42,500.00</div>
@@ -356,38 +353,6 @@
                     </div>
                 </div>
 
-                <!-- BILLING SECTION -->
-                <div id="billing" class="dashboard-section hidden space-y-8 animate-in slide-in-from-right-4 transition-all duration-300">
-                    <div class="grid lg:grid-cols-2 gap-8">
-                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[40px] border border-slate-100 dark:border-slate-800 shadow-sm">
-                            <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm mb-8">Membership Protocol</h3>
-                            <div class="p-6 bg-primary rounded-3xl text-white relative overflow-hidden mb-8">
-                                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-                                <p class="text-[10px] font-bold uppercase tracking-widest text-blue-200 mb-2">Active Plan</p>
-                                <h4 class="text-2xl font-heading font-black mb-4">Elite Transformation</h4>
-                                <div class="flex justify-between items-center text-xs border-t border-white/20 pt-4">
-                                    <span>Renews: Aug 12, 2024</span>
-                                    <span class="font-bold">$49.00/mo</span>
-                                </div>
-                            </div>
-                            <button class="w-full h-12 bg-slate-900 dark:bg-slate-800 text-white text-xs font-bold rounded-2xl hover:scale-[1.02] transition-transform">Manage Subscription</button>
-                        </div>
-                        <div class="bg-white dark:bg-slate-900 p-8 rounded-[40px] border border-slate-100 dark:border-slate-800 shadow-sm">
-                            <h3 class="text-lg font-heading font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-sm mb-8">Recent Invoices</h3>
-                            <div class="space-y-4">
-                                <div class="flex justify-between items-center p-4 border border-slate-50 dark:border-slate-800 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                    <div><p class="text-sm font-bold dark:text-white">July 2024 billing cycle</p><p class="text-[10px] text-slate-400 font-medium">Inv #FIN-2024-07</p></div>
-                                    <span class="text-sm font-black dark:text-blue-400">$49.00</span>
-                                </div>
-                                <div class="flex justify-between items-center p-4 border border-slate-50 dark:border-slate-800 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-                                    <div><p class="text-sm font-bold dark:text-white">June 2024 billing cycle</p><p class="text-[10px] text-slate-400 font-medium">Inv #FIN-2024-06</p></div>
-                                    <span class="text-sm font-black dark:text-blue-400">$49.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- SETTINGS SECTION -->
                 <div id="settings" class="dashboard-section hidden space-y-8 animate-in slide-in-from-right-4 transition-all duration-300">
                     <div class="grid lg:grid-cols-2 gap-8 items-stretch">
@@ -444,6 +409,7 @@
             const toggleBtn = document.getElementById('sidebar-toggle');
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.dashboard-section');
+            const availableSections = new Set([...sections].map(section => section.id));
             const systemStatusTitle = document.querySelector('h2.lg\\:block');
 
             // SECTION SWITCHER LOGIC
@@ -510,7 +476,8 @@
             }
 
             // Handle initial load from hash
-            const initialHash = window.location.hash.replace('#', '') || 'overview';
+            const requestedHash = window.location.hash.replace('#', '');
+            const initialHash = availableSections.has(requestedHash) ? requestedHash : 'overview';
             switchSection(initialHash);
         });
     </script>
