@@ -125,12 +125,20 @@ input:focus {
 
 /* Dark Mode Overrides */
 .dark body {
-    background-color: #0F172A;
+    background-color: #000000;
     color: #F1F5F9;
 }
 
 .dark .bg-secondary {
-    background-color: #1E293B;
+    background-color: #000000;
+}
+
+/* Force core dark surfaces to true black for better contrast */
+.dark .dark\:bg-slate-900,
+.dark .dark\:bg-slate-950,
+.dark .dark\:bg-slate-900\/50,
+.dark .dark\:bg-slate-900\/40 {
+    background-color: #000000 !important;
 }
 
 .dark .text-primary {

@@ -13,7 +13,7 @@
     <!-- Utility Toggles -->
     <div class="fixed top-6 right-6 flex items-center space-x-2 md:space-x-4 z-50">
         <button id="rtl-toggle" class="w-10 h-10 bg-white dark:bg-slate-900 shadow-lg rounded-full flex items-center justify-center text-slate-500 hover:text-primary transition-all">
-            <i class="fas fa-language"></i>
+            <i class="fas fa-right-left"></i>
         </button>
         <button id="dark-mode-toggle" class="w-10 h-10 bg-white dark:bg-slate-900 shadow-lg rounded-full flex items-center justify-center text-slate-500 hover:text-primary transition-all">
             <i class="fas fa-moon"></i>
@@ -39,14 +39,17 @@
                 <div class="relative"><i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-300"></i><input type="email" placeholder="john@example.com" class="w-full h-14 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl pl-12 pr-6 focus:ring-2 focus:ring-primary dark:text-white transition-all outline-none"></div>
             </div>
             <div>
-                <div class="flex justify-between items-center mb-2">
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Password</label>
-                    <a href="#" class="text-[10px] text-primary font-bold hover:underline uppercase tracking-wider">Forgot Password?</a>
-                </div>
+
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Password</label>
+
+
                 <div class="relative">
                     <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-300"></i>
                     <input type="password" placeholder="••••••••" class="w-full h-14 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl pl-12 pr-12 focus:ring-2 focus:ring-primary dark:text-white transition-all outline-none">
                     <i class="fas fa-eye absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 cursor-pointer hover:text-primary transition-colors"></i>
+                </div>
+                <div class="mt-2 text-right">
+                    <a href="#" class="text-[10px] text-primary font-bold hover:underline uppercase tracking-wider">Forgot Password?</a>
                 </div>
             </div>
 
